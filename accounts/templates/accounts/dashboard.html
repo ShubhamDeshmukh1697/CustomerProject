@@ -10,18 +10,21 @@
       <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th></th>
           <th scope="col">Customer</th>
-          <th scope="col">Orders</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
           
         </tr>
       </thead>
+      {% for i in customers %}
       <tbody>
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
+          <th scope="row">{{i.name}}</th>
+          <td>{{i.email}}</td>
+          <td>{{i.phone}}</td>
         </tr>
       </tbody>
+      {% endfor %}
     </table>
       </div>
   </div>
@@ -33,20 +36,25 @@
       <table class="table">
       <thead class="thead-dark">
         <tr>
+          <th scope="col">Customer</th>
           <th scope="col">Product</th>
-          <th scope="col">Date</th>
+          <th scope="col">Date Created</th>
           <th scope="col">Status</th>
           <th scope="col">Update</th>
           <th scope="col">Remove</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody style="font-weight:800;">
+        {% for i in orders %}
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+            <td>{{i.customer.name}}</td>
+            <td>{{i.product.name}}</td>
+            <td>{{i.date_created.date}}</td>
+            <td>{{i.status}}</td>
+            <td><a href="" class="btn btn-outline-primary">Update</a></td>
+            <td><a href="" class="btn btn-outline-primary">Delete</a></td>
         </tr>
+        {% endfor %}
       </tbody>
     </table>
       </div>

@@ -3,16 +3,29 @@
 <br />
 <div class="row">
   <div class="col-md">
-    <div class="card card-title">
-      <h5>Products</h5>
+    <div class="card card-title" style="background-color:#5CDB95;border:none;">
+      <h5 style="color:#EDF5E1;font-weight:800;font-size: 40px;margin: auto;font-family: monospace;text-decoration:underline" >Products</h5>
     </div>
-    <div class="card card-body">
+    <div class="card card-body mx-4 my-3" style="border:2px solid #379683">
       <table class="table">
+      <thead class="thead-dark">
         <tr>
           <th>Product</th>
           <th>Category</th>
           <th>Price</th>
+          <th>Date</th>
+          <th>Tag</th>
         </tr>
+        </thead>
+        {% for i in products %}
+         <tr>
+          <th>{{i.name}}</th>
+          <th>{{i.category}}</th>
+          <th>{{i.price}}</th>
+          <th>{{i.date_created}}</th>
+          <th>{{i.tag.name  }}</th>
+        </tr>
+        {% endfor %}
       </table>
     </div>
   </div>
