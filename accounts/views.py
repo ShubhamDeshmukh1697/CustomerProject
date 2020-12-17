@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
+from .forms import OrderForm
 
 # Create your views here.
 
@@ -25,3 +26,31 @@ def customer(request,id):
     # gives orders for customer with id which is accepted as string 
     
     return render(request,'accounts/customer.html',{'customer':customer,'cus_order':cus_order})
+
+def createOrder(request):
+
+    form = OrderForm()
+    if request.method=="POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form':form}
+    return render(request,'accounts/order_form.html',context)
+
+def updateOrder(request, pk):
+
+    order = Order.objects.get(id=pk)
+    form = OrderForm(instance=order)
+    # instance directly shows value of order in input fields
+    if request.method=="POST":
+        form = OrderForm(request.POST , instance=order)
+        # it will not create new record and change the old instance
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    
+
+    context = {'form':form,'order':order}
+    return render(request,'accounts/order_form.html',context)
