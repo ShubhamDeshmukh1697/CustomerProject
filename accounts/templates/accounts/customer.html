@@ -58,8 +58,8 @@
                     <th class="pt-2">{{i.product.category}}</th>
                     <th class="pt-2">{{i.date_created}}</th>
                     <th class="pt-2">{{i.status}}</th>
-                    <th class="pt-2"><a class="btn btn-outline-success" href="">Update</a></th>
-                    <th class="pt-2"><a class="btn btn-outline-danger" href="">Remove</a></th>
+                    <th class="pt-2"><a class="btn btn-outline-success" href="{% url 'update_order' i.id %}">Update</a></th>
+                    <th class="pt-2"><a class="btn btn-outline-danger" href="{% url 'delete_order' i.id %}">Remove</a></th>
                 </tr>
                 {% endfor %}
             </table>
