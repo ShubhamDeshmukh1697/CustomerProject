@@ -19,5 +19,9 @@ def product(request):
     context={'products':products}
     return render(request,'accounts/product.html',context)
 
-def customer(request):
-    return render(request,'accounts/customer.html')
+def customer(request,id):
+    customer = Customer.objects.get(id=id)
+    cus_order = customer.order_set.all()
+    # gives orders for customer with id which is accepted as string 
+    
+    return render(request,'accounts/customer.html',{'customer':customer,'cus_order':cus_order})

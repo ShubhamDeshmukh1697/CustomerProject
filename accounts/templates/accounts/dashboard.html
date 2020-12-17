@@ -19,7 +19,7 @@
       {% for i in customers %}
       <tbody>
         <tr>
-          <th scope="row">{{i.name}}</th>
+          <th scope="row" ><a style="color:#05386B;" href="customer/{{i.id}}">{{i.name}}</a></th>
           <td>{{i.email}}</td>
           <td>{{i.phone}}</td>
         </tr>
