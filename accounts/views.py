@@ -13,8 +13,16 @@ from .decorators import unauthenticated_user,allowed_users,admin_only
 
 
 # Create your views here.
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
 def userPage(request):
-    return render(request ,'accounts/user.html')
+    
+    orders = request.user.customer.order_set.all()
+    order = orders
+    ordDel=orders.filter(status="Delivered")
+    ordPen = orders.filter(status='Pending')
+    context = {'orders':orders,'order':order,'ordDel' :ordDel ,"ordPen":ordPen}
+    return render(request ,'accounts/user.html' , context)
 
 @unauthenticated_user
 def register(request):
@@ -29,7 +37,13 @@ def register(request):
             
             # associating group for created user
             group =  Group.objects.get(name='customer')
+
             user.groups.add(group)
+
+            # assigning customer to a new user
+            Customer.objects.create(
+                user=user ,
+            )
 
             messages.success(request , f"Account was created for {username} ")
             return redirect('login')

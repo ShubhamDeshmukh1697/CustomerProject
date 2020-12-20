@@ -1,7 +1,32 @@
 {% extends 'accounts/main.html' %}
 
-{% include 'accounts/status.html' %}
 {% block body %}
-<h3>Profile</h3>
+{% include 'accounts/status.html' %}
+<div class="row my-3 ml-2 mx-1" >
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        
+                    </tr>
+                </thead>
+                {% for i in orders %}
+                <tr class="my-2">
+                    <th class="pt-2">{{i.product.name}}</th>
+                    <th class="pt-2">{{i.product.category}}</th>
+                    <th class="pt-2">{{i.date_created}}</th>
+                    <th class="pt-2">{{i.status}}</th>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 
 {% endblock body %}
