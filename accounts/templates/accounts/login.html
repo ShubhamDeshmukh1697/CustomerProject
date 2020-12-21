@@ -43,9 +43,12 @@
 				{{message}}
 				{% endfor %}
 		
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+				<div class="mt-4 d-flex row justify-content-center">
+					<div class="links">
+						<small> Don't have an account?</small> <a href="{% url 'register' %}" style="color:white" class="ml-2"><small>Sign Up</small></a>
+					</div>
+					<div class="links">
+						<small> Forgot Password?</small> <a href="{% url 'reset_password' %}" style="color:white" class="ml-2"><small>Reset Password</small></a>
 					</div>
 			
 				</div>
